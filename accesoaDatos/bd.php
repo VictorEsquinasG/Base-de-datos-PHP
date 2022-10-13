@@ -1,6 +1,12 @@
 <?php
 
-function get_by_ID(){
+function get_by_ID( $id ){
+
+    $dwes = new PDO("mysql:host=localhost;dbname=productos", "root");
+    $resultado = $dwes->query("SELECT * FROM producto where id=$id");
+    while ($registro = $resultado->fetch()) {
+        echo "id ".$registro['ID'].": ".$registro['nombre']."<br />";
+    }
 
 }
 
