@@ -6,7 +6,16 @@
     // } else {  //Si ha sido redireccionado
     //     $pagina = $_GET['page'];  
     // }
-    
+    if (isset($_POST['editar']))
+    {
+        //Creamos el objeto 
+        $prod = [];
+        //Actualizamos en la Base de Datos
+        update_by_ID($prod);
+    }else if (isset($_POST['borrar']))
+    {
+
+    }
     $lista = get_All();
     
    
@@ -33,7 +42,8 @@
         <?php
             $i = 0;
             foreach ($lista as $produc) {
-                $foto = "<img src=\"data:image/png;base64, $produc[$i]['foto']\"";
+                $img = $produc[$i]['foto'];
+                $foto = "<img src=\"data:image/png;base64, $img \"";
                 print('<tr><td>'.$produc[$i]['id'].'</td><td>'.$produc[$i]['nombre'].'</td><td>'.$foto.'</td>'.
                 '<td> <input type="submit" name="editar" value="✏">'.
                 '<input type="submit" name="borrar" value="🗑"> </td></tr>');
