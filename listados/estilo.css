@@ -2,3 +2,9 @@ table {
     width: 60%;
     margin: auto;
 }
+h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15;
+    text-align: justify;
+    background-color: rgb(228, 255, 246);
+}
