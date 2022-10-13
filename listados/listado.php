@@ -1,12 +1,21 @@
 <!-- Página del listado -->
 <?php
     include("../accesoaDatos/bd.php");
-    if (!isset ($_GET['page']) ) {  
-        $pagina = 1;  
-    } else {  //Si ha sido redireccionado
-        $pagina = $_GET['page'];  
+    // if (!isset ($_GET['page']) ) {  
+    //     $pagina = 1;  
+    // } else {  //Si ha sido redireccionado
+    //     $pagina = $_GET['page'];  
+    // }
+    if (isset($_POST['editar']))
+    {
+        //Creamos el objeto 
+        $prod = [];
+        //Actualizamos en la Base de Datos
+        update_by_ID($prod);
+    }else if (isset($_POST['borrar']))
+    {
+
     }
-    
     $lista = get_All();
     
    
@@ -21,6 +30,7 @@
     <title>Listado</title>
 </head>
 <body>
+    <h3>Listado</h3>
     <table>
         <tr>
             <th>Id</th>
@@ -28,14 +38,18 @@
             <th>Foto</th>
             <th>Acción</th>
         </tr>
+        
         <?php
             $i = 0;
             foreach ($lista as $produc) {
-                $foto = "<img src=\"data:image/png;base64, $produc[$i]['foto']\"";
+                $img = $produc[$i]['foto'];
+                $foto = "<img src=\"data:image/png;base64, $img \"";
                 print('<tr><td>'.$produc[$i]['id'].'</td><td>'.$produc[$i]['nombre'].'</td><td>'.$foto.'</td>'.
-                '<td> <span>✏</span><span>🗑</span> </td></tr>');
+                '<td> <input type="submit" name="editar" value="✏">'.
+                '<input type="submit" name="borrar" value="🗑"> </td></tr>');
                 $i++;
             }
+            print('<tfoot></tfoot>')
         ?>
     </table>
 </body>

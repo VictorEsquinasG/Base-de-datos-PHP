@@ -2,3 +2,16 @@ table {
     width: 60%;
     margin: auto;
 }
+th {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10;
+    color: white;
+    background-color: rgb(121, 121, 121);
+}
+h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15;
+    text-align: justify;
+    margin: auto;
+    background-color: rgb(228, 255, 246);
+}
