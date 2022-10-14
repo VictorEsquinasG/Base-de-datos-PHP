@@ -17,7 +17,7 @@ $lista = get_All();
 
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-ES">
 
 <head>
     <meta charset="UTF-8">
