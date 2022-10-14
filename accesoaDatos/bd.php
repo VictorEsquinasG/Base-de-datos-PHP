@@ -40,8 +40,8 @@ function get_All(){
 }
 
 function insert_New( $valores){ 
-    
-    $resultado = abreConexion()->query("INSERT INTO producto (nombre, imagem) VALUES ($valores[1],$valores[2])");
+
+    $resultado = abreConexion()->exec("INSERT INTO producto (nombre, imagem) VALUES ($valores[1],$valores[2])");
     return $resultado == 1;
 }
 
