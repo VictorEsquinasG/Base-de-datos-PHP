@@ -1,4 +1,4 @@
-<<?php
+<?php
 if (isset($_POST['guardar']))
 {
     $id=trim($_POST['id']);
