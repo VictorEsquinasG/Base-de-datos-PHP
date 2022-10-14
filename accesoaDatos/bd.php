@@ -25,7 +25,6 @@ function abreConexion(){
     
     $separa=explode(";",$fichero);
 
-    var_dump($separa);
     $dwes = new PDO("mysql:host=".$separa[0].";dbname=".$separa[1], "root",$separa[2]);
     return $dwes;
 }
