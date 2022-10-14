@@ -16,6 +16,7 @@
     {
 
     }
+    $lista = []; 
     $lista = get_All();
     
    
@@ -30,7 +31,13 @@
     <title>Listado</title>
 </head>
 <body>
+
+    <form action="../formularios/formulario.php" method="POST">
+        <button type="submit" id="new">Añadir alumno</button>
+    </form>
+
     <h3>Listado</h3>
+      
     <table>
         <tr>
             <th>Id</th>
