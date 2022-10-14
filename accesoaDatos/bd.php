@@ -18,50 +18,43 @@ function abreConexion(){
 
 function get_by_ID( $id ){
 
-    abreConexion();
     $resultado = abreConexion()->query("SELECT * FROM producto where id=$id");
     while ($registro = $resultado->fetch()) {
-        for ($i=0;$registro = $resultado->fetch();$i++){
-             $producto[$i] = [$registro['ID'],$registro['nombre'],$registro['imagen']];
-        }
-       
+
+        $producto = [$registro['ID'],$registro['nombre'],$registro['imagen']];
     }
     return $producto;
 }
 
 function get_All(){
-    abreConexion();
     $resultado = abreConexion()->query("SELECT * FROM producto");
     
-    while ($registro = $resultado->fetch()) {
-        $productos[$registro['ID']] = [$registro['nombre'],$registro['imagen']];
-    }
-    
-/*
     while ($registro = $resultado->fetch()) {
         for ($i=0;$registro = $resultado->fetch();$i++){
             $productos[$i] = [$registro['ID'],$registro['nombre'],$registro['imagen']];
        }
     }
-    */
+   
     return $productos;
 }
 
-function insert_New( $nombre, $imagen){ 
+function insert_New( $valores){ 
 
-    abreConexion();
-    $resultado = abreConexion()->query("INSERT INTO producto (nombre, imagem) VALUES ($nombre,$imagen)");
-
+    $resultado = abreConexion()->exec("INSERT INTO producto (nombre, imagen) VALUES ($valores[1],$valores[2])");
+    return $resultado == 1;
 }
 
 function delete_by_ID($id){
 
-    abreConexion();
-    $resultado = abreConexion()->query("DELETE from productos.producto where ID $id");
-
+    $resultado = abreConexion()->exec("DELETE from producto where ID $id");
+    return $resultado == 1;
 }
 
-function update_by_ID(){
+function update_by_ID( $valores){
+
+    $resultado = abreConexion()->exec("UPDATE productos SET nombre = $valores[1], 
+                                                            imagen = $valores[2] WHERE (ID = $valores[0])");
     
+    return $resultado == 1;
 }
 
