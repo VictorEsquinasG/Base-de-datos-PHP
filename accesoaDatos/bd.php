@@ -38,6 +38,11 @@ function get_All(){
     return $productos;
 }
 
+/*
+$valores es un array donde el valor 0 es la id
+                           el valor 1 es el nombre
+                           el valor 2 es la imagen
+*/
 function insert_New( $valores){ 
 
     $resultado = abreConexion()->exec("INSERT INTO producto (nombre, imagen) VALUES ($valores[1],$valores[2])");
@@ -50,6 +55,11 @@ function delete_by_ID($id){
     return $resultado == 1;
 }
 
+/*
+$valores es un array donde el valor 0 es la id
+                           el valor 1 es el nombre
+                           el valor 2 es la imagen
+*/
 function update_by_ID( $valores){
 
     $resultado = abreConexion()->exec("UPDATE productos SET nombre = $valores[1], 
