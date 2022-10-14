@@ -57,9 +57,7 @@ $lista = get_All();
                 $i++;
             }
         }else {
-            print('<tr><td>' . 'No hay alumnos' . '</td><td>' . 'Registrados' . '</td><td>' . 'en la base de datos' . '</td>' .
-                    '<td> <input type="submit" name="editar" value="✏">' .
-                    '<input type="submit" name="borrar" value="🗑"> </td></tr>');
+            print('<tr><td id="vacio">' . 'No hay alumnos'  . 'registrados' .  'en la base de datos' . '</td></tr>');
         }
         print('<tfoot></tfoot>')
         ?>
