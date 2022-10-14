@@ -31,7 +31,7 @@ $lista = get_All();
 
 <body>
 
-    <form action="../formularios/formulario.php" method="POST">
+    <form action="../formularios/formulario.php" method="POST" enctype="multipart/form-data">
         <button type="submit" name="new" id="new">Añadir alumno</button>
     </form>
 
