@@ -1,3 +1,56 @@
+<?php
+if (isset($_POST['guardar']))
+{
+    $id=trim($_POST['id']);
+    $producto=trim($_POST['producto']);
+    $imagen="";
+    $extension=$_FILES['imagen']['type'];
+
+    $arrayerrores=[];
+    $valores=[];
+
+    if(isset($id))
+    {
+        if(!empty($id))
+        {
+            $valores[0]=$id;
+        }
+    }
+    else
+    {
+        //poner bordes en rojo
+    }
+
+    if(isset($producto))
+    {
+        if(!empty($iproducto))
+        {
+            $valores[1]=$producto;
+        }
+    }
+    else
+    {
+        //poner bordes en rojo
+    }
+
+    $formatosvalidos=array('jpg','png');
+    if(isset($_FILES['imagen']))
+    {
+        if(!empty($_FILES['imagen']))
+        {
+           
+            $imagen=file_get_contents($_FILES['imagen']['tmp_name']);
+            $imagen=base64_encode($imagen);
+            $valores[2]=$imagen;
+            
+        }
+    }
+
+}
+
+?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,41 +59,21 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <form enctype="multipart/form-data" name="input" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <form enctype="multipart/form-data" name="input" action="" method="post">
+
         <label>ID</label>
-        <input type="text" name="id" value="<?php if (isset ($_POST['id'])) echo $_POST['id'];?>"/>
-       
+        <input type="text" name="id"/>
+        </br>
+
         <label>PRODUCTO</label>
-        <input type="text" name="producto" value="<?php if (isset ($_POST['producto'])) echo $_POST['producto'];?>"/>
+        <input type="text" name="producto">
+        </br>
 
         <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-        Imagen: <input name="fichero_usuario" type="file" />
+        IMAGEN: <input name="fichero_imagen" type="file" /></br>
         
-        <input type="submit" value="guardar" name="guardar" >
-        <?php
-        /*HAY QUE CAMBIAR LA RUTA POR LA NUEVA RUTA
-        HAY QUE HACER EL ENCODE DE LAS IMAGENES Y PASARLAS A UN ARRAY ASOCIATIVO */
-        $dir_subida = ($_SERVER["DOCUMENT_ROOT"].'/subidadeficheros/files/');
-     
-        $fichero_subido = $dir_subida . basename($_FILES['fichero_usuario']['name']);
-            
-        if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido)) 
-        {         
-                $file = fopen($fichero_subido,"r");
-                $data=array();
-                //echo '<img src="../subidadeficheros/files/cofete.jpg">';
-                while (!feof($file)) 
-                {
-                $data[] = fgetcsv($file,null,';');        
-                }                
-        } 
-        else
-        {
-            echo "¡Posible ataque de subida de ficheros!\n";
-        }
-          
-        ?>
+
+        <input type="submit" value="GUARDAR" name="guardar" >
         
     </form> 
     
