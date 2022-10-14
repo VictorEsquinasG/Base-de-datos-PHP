@@ -1,3 +1,4 @@
+
 <?php
 /*
     abreConexion();
@@ -11,8 +12,17 @@
 var_dump($producto);
 */
 
+
+/*
+
+*/
 function abreConexion(){
-    $dwes = new PDO("mysql:host=localhost;dbname=productos", "root");
+    $ruta= "host.csv";
+    $fichero=file_get_contents($ruta);
+    
+    $separa=explode(";",$fichero);
+
+    $dwes = new PDO("mysql:host=".$separa[0].";dbname=".$separa[1]"", "root","".$separa[2]."");
     return $dwes;
 }
 
