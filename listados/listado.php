@@ -6,13 +6,11 @@ include("../accesoaDatos/bd.php");
 // } else {  //Si ha sido redireccionado
 //     $pagina = $_GET['page'];  
 // }
-if (isset($_POST['editar'])) {
-    //Creamos el objeto 
-    $prod = [];
-    //Actualizamos en la Base de Datos
-    update_by_ID($prod);
-} else if (isset($_POST['borrar'])) {
-}
+if (isset($_POST['borrar'])) {
+    $clave = $_GET['id'];
+    $prod = get_by_ID($clave);
+    delete_by_ID($prod);
+} 
 $lista = [];
 $lista = get_All();
 
@@ -30,8 +28,8 @@ $lista = get_All();
 </head>
 
 <body>
-
-    <form action="../formularios/formulario.php" method="POST" enctype="multipart/form-data">
+    <!-- Creación de un nuevo usuario -->
+    <form id="nuevo" action="../formularios/formulario.php" method="POST" enctype="multipart/form-data">
         <button type="submit" name="new" id="new">Añadir alumno</button>
     </form>
 
@@ -45,18 +43,20 @@ $lista = get_All();
             <th>Acción</th>
         </tr>
 
+        <!-- Ahora mostramos el listado -->
+        
         <?php
-        if (!empty($lista)) {
+        if (!empty($lista)) {   // Si el array no está vacío, rellenamos la tabla según la base de datos
             $i = 0;
             foreach ($lista as $produc) {
                 $img = $produc[$i]['foto'];
                 $foto = "<img src=\"data:image/png;base64, $img \"";
                 print('<tr><td>' . $produc[$i]['id'] . '</td><td>' . $produc[$i]['nombre'] . '</td><td>' . $foto . '</td>' .
-                    '<td> <input type="submit" name="editar" value="✏">' .
-                    '<input type="submit" name="borrar" value="🗑"> </td></tr>');
+                    "<td> <form action='../formularios/edita.php?id=$id' method='GET'><input type='submit' name='editar' value='✏️'></form>" .
+                    "<form action='listado.php?id=$id' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
                 $i++;
             }
-        }else {
+        }else { // Si está vacío, añadimos una fila a la tabla
             print('<tr><td id="vacio">' . 'No hay alumnos'  . 'registrados' .  'en la base de datos' . '</td></tr>');
         }
         print('<tfoot></tfoot>')

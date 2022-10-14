@@ -1,4 +1,5 @@
 <?php
+include("../accesoaDatos/bd.php");
 if (isset($_POST['guardar']))
 {
     $id=trim($_POST['id']);
@@ -45,7 +46,12 @@ if (isset($_POST['guardar']))
             
         }
     }
+    insert_New($valores);
 
+    if(insert_New($valores)==false) 
+    {
+        echo "LOS VALORES NO SE HAN PODIDO GUARDAR";
+    }
 }
 
 ?>
