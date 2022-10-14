@@ -32,7 +32,7 @@ $lista = get_All();
 <body>
 
     <form action="../formularios/formulario.php" method="POST">
-        <button type="submit" id="new">Añadir alumno</button>
+        <button type="submit" name="new" id="new">Añadir alumno</button>
     </form>
 
     <h3>Listado</h3>
