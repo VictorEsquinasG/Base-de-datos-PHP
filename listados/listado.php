@@ -43,10 +43,10 @@ $lista = get_All();
             <th>Acción</th>
         </tr>
 
-        
+        <!-- Ahora mostramos el listado -->
         
         <?php
-        if (!empty($lista)) {
+        if (!empty($lista)) {   // Si el array no está vacío, rellenamos la tabla según la base de datos
             $i = 0;
             foreach ($lista as $produc) {
                 $img = $produc[$i]['foto'];
@@ -56,7 +56,7 @@ $lista = get_All();
                     "<form action='listado.php?id=$id' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
                 $i++;
             }
-        }else {
+        }else { // Si está vacío, añadimos una fila a la tabla
             print('<tr><td id="vacio">' . 'No hay alumnos'  . 'registrados' .  'en la base de datos' . '</td></tr>');
         }
         print('<tfoot></tfoot>')
