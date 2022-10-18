@@ -29,7 +29,7 @@ $lista = get_All();
 
 <body>
     <!-- Creación de un nuevo usuario -->
-    <form id="nuevo" action="../formularios/formulario.php" method="POST" enctype="multipart/form-data">
+    <form id="nuevo" action="../formularios/nuevo.php" method="POST" enctype="multipart/form-data">
         <button type="submit" name="new" id="new">Añadir alumno</button>
     </form>
 
