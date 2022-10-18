@@ -1,3 +1,4 @@
+
 <?php
 /*
     abreConexion();
@@ -11,8 +12,20 @@
 var_dump($producto);
 */
 
+
+/*
+vosotros en el fichero debereis poner mi IP "192.168.121.92"
+el orden en el fichero será la siguiente;
+"IP";"nombre de la base de datos";"contraseña"
+192.168.121.92;productos;Usuario1234.
+*/
 function abreConexion(){
-    $dwes = new PDO("mysql:host=localhost;dbname=productos", "root");
+    $ruta= "../accesoaDatos/host.csv";
+    $fichero=file_get_contents($ruta);
+    
+    $separa=explode(";",$fichero);
+
+    $dwes = new PDO("mysql:host=".$separa[0].";dbname=".$separa[1], "root",$separa[2]);
     return $dwes;
 }
 
