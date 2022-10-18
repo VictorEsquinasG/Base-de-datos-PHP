@@ -16,23 +16,25 @@ if (isset($_POST['guardar']))
         {
             $valores[0]=$id;
         }
+        else
+        {
+            //poner bordes en rojo
+        }
     }
-    else
-    {
-        //poner bordes en rojo
-    }
+   
 
     if(isset($producto))
     {
-        if(!empty($iproducto))
+        if(!empty($producto))
         {
             $valores[1]=$producto;
         }
+        else
+        {
+            //poner bordes en rojo
+        }
     }
-    else
-    {
-        //poner bordes en rojo
-    }
+    
 
     $formatosvalidos=array('jpg','png');
     if(isset($_FILES['imagen']))
@@ -46,6 +48,7 @@ if (isset($_POST['guardar']))
             
         }
     }
+
     insert_New($valores);
 
     if(insert_New($valores)==false) 
@@ -75,10 +78,7 @@ if (isset($_POST['guardar']))
         <input type="text" name="producto">
         </br>
 
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
         IMAGEN: <input name="fichero_imagen" type="file" /></br>
-        
-
         <input type="submit" value="GUARDAR" name="guardar" >
         
     </form> 

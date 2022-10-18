@@ -1,13 +1,25 @@
 <?php
-if (isset($_POST['guardar']))
+include ("../listados/listado.php");
+include("../accesoaDatos/bd.php");
+
+if (isset($_GET))
 {
-    $id=trim($_POST['id']);
+    $id=trim($_GET['id']);
+    if(!empty(get_by_ID($id)))
+    {
+        $datosproducto=get_by_ID($id);
+    }
+}
+else if (isset($_POST['guardar']))
+{
+       
     $producto=trim($_POST['producto']);
     $imagen="";
     $extension=$_FILES['imagen']['type'];
 
     $arrayerrores=[];
     $valores=[];
+
 
     if(isset($id))
     {
@@ -21,30 +33,7 @@ if (isset($_POST['guardar']))
 
     }
 
-    if(isset($producto))
-    {
-        if(!empty($iproducto))
-        {
-            $valores[1]=$producto;
-        }
-    }
-    else
-    {
-
-    }
-
-    $formatosvalidos=array('jpg','png');
-    if(isset($_FILES['imagen']))
-    {
-        if(!empty($_FILES['imagen']))
-        {
-           
-            $imagen=file_get_contents($_FILES['imagen']['tmp_name']);
-            $imagen=base64_encode($imagen);
-            $valores[2]=$imagen;
-            
-        }
-    }
+   
 
 }
 
