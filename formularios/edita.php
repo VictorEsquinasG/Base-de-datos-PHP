@@ -58,7 +58,6 @@ else if (isset($_POST['guardar']))
         <input type="text" name="producto">
         </br>
 
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
         IMAGEN: <input name="fichero_imagen" type="file" /></br>
         
 
