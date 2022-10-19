@@ -32,20 +32,21 @@ function abreConexion(){
 function get_by_ID( $id ){
 
     $resultado = abreConexion()->query("SELECT * FROM producto where id=$id");
-    while ($registro = $resultado->fetch()) {
-
-        $producto = [$registro['ID'],$registro['nombre'],$registro['imagen']];
+    
+    while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) 
+    {
+        $producto[] = $registro;
     }
+   
     return $producto;
 }
 
 function get_All(){
     $resultado = abreConexion()->query("SELECT * FROM producto");
     
-    while ($registro = $resultado->fetch()) {
-        for ($i=0;$registro = $resultado->fetch();$i++){
-            $productos[$i] = [$registro['ID'],$registro['nombre'],$registro['imagen']];
-       }
+    while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) 
+    {
+        $productos[] = $registro;
     }
    
     return $productos;
