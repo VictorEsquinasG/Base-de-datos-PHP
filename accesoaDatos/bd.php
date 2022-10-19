@@ -1,16 +1,16 @@
 
 <?php
 /*
-    abreConexion();
-    $resultado = abreConexion()->query("SELECT * FROM producto");
-    while ($registro = $resultado->fetch()) {
-        for ($i=0;$registro = $resultado->fetch();$i++){
-             $producto[$i] = [$registro['ID'],$registro['nombre'],$registro['imagen']];
-        }
-       
-    }
-var_dump($producto);
+$resultado = abreConexion()->query("SELECT * FROM producto");
+    
+while ($registro = $resultado->fetch()) {
+    for ($i=0; $registro = $resultado->fetch() ;$i++){
+        $productos[$i] = [$registro['ID'],$registro['nombre'],$registro['imagen']];
+        var_dump($productos);
+   }
+}
 */
+
 
 
 /*
@@ -64,7 +64,7 @@ function insert_New( $valores){
 
 function delete_by_ID($id){
 
-    $resultado = abreConexion()->exec("DELETE from producto where ID $id");
+    $resultado = abreConexion()->exec("DELETE from producto where ID = $id");
     return $resultado == 1;
 }
 
