@@ -47,15 +47,17 @@ $lista = get_All();
         
         <?php
         if (!empty($lista)) {   // Si el array no está vacío, rellenamos la tabla según la base de datos
-            $i = 0;
+            
             foreach ($lista as $produc) {
-                $img = $produc[$i]['foto'];
+                //var_dump($produc);
+                $img = $produc[2];
                 $foto = "<img src=\"data:image/png;base64, $img \"";
-                print('<tr><td>' . $produc[$i]['id'] . '</td><td>' . $produc[$i]['nombre'] . '</td><td>' . $foto . '</td>' .
-                    "<td> <form action='../formularios/edita.php?id=$id' method='GET'><input type='submit' name='editar' value='✏️'></form>" .
-                    "<form action='listado.php?id=$id' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
-                $i++;
+                print('<tr><td>' . $produc[0] . '</td><td>' . $produc[1] . '</td><td>' . $foto . '</td>' .
+                    "<td> <form action='../formularios/edita.php?id=$produc[0]' method='GET'><input type='submit' name='editar' value='✏️'></form>" .
+                    "<form action='listado.php?id=$produc[0]' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
+
             }
+
         }else { // Si está vacío, añadimos una fila a la tabla
             print('<tr><td id="vacio">' . 'No hay alumnos'  . 'registrados' .  'en la base de datos' . '</td></tr>');
         }
