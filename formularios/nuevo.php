@@ -77,8 +77,8 @@ if (isset($_POST['guardar']))
         <label>PRODUCTO</label>
         <input type="text" name="producto">
         </br>
-
-        IMAGEN: <input name="fichero_imagen" type="file" /></br>
+        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+        IMAGEN: <input name="imagen" type="file" /></br>
         <input type="submit" value="GUARDAR" name="guardar" >
         
     </form> 
