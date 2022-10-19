@@ -13,7 +13,7 @@ if (isset($_POST['borrar'])) {
 } 
 $lista = [];
 $lista = get_All();
-
+var_dump($lista);
 
 ?>
 <!DOCTYPE html>
@@ -50,11 +50,11 @@ $lista = get_All();
             
             foreach ($lista as $produc) {
                 //var_dump($produc);
-                $img = $produc[2];
+                $img = $produc['imagen'];
                 $foto = "<img src=\"data:image/png;base64, $img \"";
-                print('<tr><td>' . $produc[0] . '</td><td>' . $produc[1] . '</td><td>' . $foto . '</td>' .
-                    "<td> <form action='../formularios/edita.php?id=$produc[0]' method='GET'><input type='submit' name='editar' value='✏️'></form>" .
-                    "<form action='listado.php?id=$produc[0]' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
+                print('<tr><td>' . $produc['ID'] . '</td><td>' . $produc['nombre'] . '</td><td>' . $foto . '</td>' .
+                    "<td> <form action='../formularios/edita.php?id= ". $produc['ID'] . "' method='GET'><input type='submit' name='editar' value='✏️'></form>" .
+                    "<form action='listado.php?id=" . $produc['ID'] ."' method='POST'><input type='submit' name='borrar' value='🗑️'></form></td></tr>");
 
             }
 
