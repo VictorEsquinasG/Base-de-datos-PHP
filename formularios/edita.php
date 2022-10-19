@@ -1,55 +1,3 @@
-<?php
-if (isset($_POST['guardar']))
-{
-    $id=trim($_POST['id']);
-    $producto=trim($_POST['producto']);
-    $imagen="";
-    $extension=$_FILES['imagen']['type'];
-
-    $arrayerrores=[];
-    $valores=[];
-
-    if(isset($id))
-    {
-        if(!empty($id))
-        {
-            $valores[0]=$id;
-        }
-    }
-    else
-    {
-
-    }
-
-    if(isset($producto))
-    {
-        if(!empty($iproducto))
-        {
-            $valores[1]=$producto;
-        }
-    }
-    else
-    {
-
-    }
-
-    $formatosvalidos=array('jpg','png');
-    if(isset($_FILES['imagen']))
-    {
-        if(!empty($_FILES['imagen']))
-        {
-           
-            $imagen=file_get_contents($_FILES['imagen']['tmp_name']);
-            $imagen=base64_encode($imagen);
-            $valores[2]=$imagen;
-            
-        }
-    }
-
-}
-
-?>
-
 
 <html lang="en">
 <head>
@@ -59,23 +7,41 @@ if (isset($_POST['guardar']))
     <title>Document</title>
 </head>
 <body>
+<?php
+include ("../listados/listado.php");
+include("../accesoaDatos/bd.php");
+    $id=$_GET['id'];
+    $datosproducto=get_by_ID($id);
+?>
     <form enctype="multipart/form-data" name="input" action="" method="post">
 
-        <label>ID</label>
-        <input type="text" name="id"/>
+        <label for="name">ID</label>
+        <input disabled type="text" name="id" id="id"/>
         </br>
 
         <label>PRODUCTO</label>
         <input type="text" name="producto">
-        </br>
-
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-        IMAGEN: <input name="fichero_imagen" type="file" /></br>
-        
-
+        <?php
+        echo "<input type='text' name='producto' id='producto' value='".$datosproducto['producto']."'/></br>";
+        ?>
+       
+       <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+        IMAGEN:
+        <?php
+        echo "<input name='imagen' type='file'/></br>";
+        ?>
         <input type="submit" value="GUARDAR" name="guardar" >
-        
     </form> 
+    <?php
+    if (isset($_POST['producto']) && isset($_FILES['imagen']))
+    {
+        $producto=$_POST['producto'];
+        $imagen=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
+        $datosproducto['id']=$id;
+        $datosproducto['producto']=$producto;
+        $datosproducto['imagen']=$imagen;
+    }
+    ?>
     
 </body>
 </html>
